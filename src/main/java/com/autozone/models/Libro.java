@@ -5,11 +5,13 @@ public class Libro {
 	private String titulo;
 	private String autor;
 	private String isbn;
+	private int quantity;
 	
-	public Libro(String titulo, String autor, String isbn) {
+	public Libro(String titulo, String autor, String isbn, int quantity) {
 		this.titulo = titulo;
 		this.autor = autor;
 		this.isbn = isbn;
+		this.quantity = quantity;
 	}
 
 	public String getTitulo() {
@@ -36,6 +38,14 @@ public class Libro {
 		this.isbn = isbn;
 	}
 	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
 	/*
 	 * public boolean isAvailable() {
 	 * 
@@ -45,6 +55,11 @@ public class Libro {
 
 	public void mostrarDetalles() {
 		System.out.println("[" + getTitulo() + " - " + getAutor() + ", ISBN: " + getIsbn() + "]");
+	}
+	
+	public void mostrarDisponibilidad() {
+		System.out.println("[" + getTitulo() + " - " + getAutor() + ", ISBN: " + getIsbn() + "]"
+								+ " Cantidad disponible: " + quantity);
 	}
 
 	

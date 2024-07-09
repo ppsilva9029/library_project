@@ -1,5 +1,7 @@
 package com.autozone.app;
 
+import java.sql.SQLException;
+
 import com.autozone.databases.LibraryDAO;
 import com.autozone.models.Libro;
 
@@ -13,13 +15,15 @@ public class App
     {
         LibraryDAO dao = new LibraryDAO();
         
-        Libro libro = new Libro("El arte de la guerra", "Sun Tzu", "95959595954");
+        Libro libro = new Libro("El arte de la guerra", "Sun Tzu", "95959595954", 2);
         try {
-			dao.insertBook(libro, 3);
-		} catch (IllegalArgumentException e) {
+        	
+        	
+			dao.buscarLibroIsbn("", true);
+		} catch (IllegalArgumentException | SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			System.out.println(e.getMessage());
+		} 
         
         
     }

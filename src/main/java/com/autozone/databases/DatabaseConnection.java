@@ -10,7 +10,7 @@ public class DatabaseConnection {
 	private static DatabaseConnection instance;
 	private Connection connection;
 	private String url = "jdbc:mysql://localhost:3306/DB_LIBRERIA";
-	private String username = "root";
+	private String username = "librarian";
 	private String password = "system";
 	
 	private DatabaseConnection() throws SQLException {

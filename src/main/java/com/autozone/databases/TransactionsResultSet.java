@@ -17,7 +17,11 @@ public class TransactionsResultSet {
 		
 		while (results.next()) {
 			// TODO transaction( args )
+			Transaction t = new Transaction(results.getString("titulo"), results.getString("isbn"), 
+					results.getString("nombre"), results.getString("user_id"), results.getString("estatus"), 
+					results.getString("fecha_prestamo"));
 			
+			data.add(t);
 		}
 	}
 	

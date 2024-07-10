@@ -71,6 +71,8 @@ public class Transaction {
 		
 		// TODO metodo de mostrar transaction
 		System.out.println("Préstamo: ["
-				+ getBookTitle() + ", ISBN: " + getIsbn() + "" +"]");
+				+ getBookTitle() + ", ISBN: " + getIsbn() + ", Prestado a: " + getNombreMiembro()
+				+ ", userId: "+ getMiembroUserId()+ ", estatus: " + getEstatus() 
+				+ ", Fecha del préstamo: "+ getFechaPrestamo()+ "]");
 	}
 }

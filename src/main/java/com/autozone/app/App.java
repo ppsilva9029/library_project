@@ -19,7 +19,7 @@ public class App
         Miembro miembro = new Miembro("Hector Gomez", "hgomez@outlook.com");
         try {
         	
-        	dao.registrarDevolucion("9780141439518", "juanM@gmail.com", "2024-02-05");
+        	dao.historialPrestamosLibro("9780141439518", true);
         	
 		} catch (IllegalArgumentException | SQLException e) {
 			// TODO Auto-generated catch block

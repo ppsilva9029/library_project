@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import com.autozone.databases.LibraryDAO;
 import com.autozone.models.Libro;
+import com.autozone.models.Miembro;
 
 /**
  * Hello world!
@@ -15,11 +16,11 @@ public class App
     {
         LibraryDAO dao = new LibraryDAO();
         
-        Libro libro = new Libro("El arte de la guerra", "Sun Tzu", "95959595954", 2);
+        Miembro miembro = new Miembro("Hector Gomez", "hgomez@outlook.com");
         try {
         	
+        	System.out.println(dao.transaccionExiste("978014143918", "juanM@gmail.com"));
         	
-			dao.buscarLibroIsbn("", true);
 		} catch (IllegalArgumentException | SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());

@@ -58,7 +58,7 @@ public class Libro {
 	}
 	
 	public void mostrarDisponibilidad() {
-		System.out.println("[" + getTitulo() + " - " + getAutor() + ", ISBN: " + getIsbn() + "]"
+		System.out.println("Libro: [" + getTitulo() + " - " + getAutor() + ", ISBN: " + getIsbn() + "]"
 								+ " Cantidad disponible: " + quantity);
 	}
 

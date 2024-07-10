@@ -19,7 +19,7 @@ public class App
         Miembro miembro = new Miembro("Hector Gomez", "hgomez@outlook.com");
         try {
         	
-        	System.out.println(dao.transaccionExiste("978014143918", "juanM@gmail.com"));
+        	dao.registrarDevolucion("9780141439518", "juanM@gmail.com", "2024-02-05");
         	
 		} catch (IllegalArgumentException | SQLException e) {
 			// TODO Auto-generated catch block

@@ -184,7 +184,7 @@ public class LibraryDAO {
 			throw new SQLException(e.getMessage());
 		}
 	}
-	
+
 	private void sumarLibro(String isbn) throws SQLException {
 
 		String sql = "UPDATE tbl_libros set quantity_available = quantity_available + 1 " + "where isbn = ?;";
@@ -439,20 +439,19 @@ public class LibraryDAO {
 		}
 
 	}
-	
+
 	private boolean transaccionExiste(String isbn, String userId) throws SQLException {
-		
+
 		String sql = "select count(*) from tbl_transacciones \n"
 				+ "where miembro_id = (select id from tbl_miembros where user_id = ?) \n"
-				+ "and libro_id = (select id from tbl_libros where isbn = ?)"
-				+ "and estatus = 'no devuelto';";
+				+ "and libro_id = (select id from tbl_libros where isbn = ?)" + "and estatus = 'no devuelto';";
 
 		try (Connection connection = DatabaseConnection.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement(sql)) {
 
 			statement.setString(1, userId);
 			statement.setString(2, isbn);
-			
+
 			ResultSet rs = statement.executeQuery();
 			rs.next();
 
@@ -462,20 +461,19 @@ public class LibraryDAO {
 		} catch (SQLException e) {
 			throw new SQLException(e.getMessage());
 		}
-		
+
 	}
-	
+
 	public void registrarDevolucion(String isbn, String userId, String fecha) throws SQLException {
-		
-		if(!transaccionExiste(isbn, userId)) {
+
+		if (!transaccionExiste(isbn, userId)) {
 			System.out.println("Este prestamo no esta registrado.");
 			return;
 		}
-		
+
 		String sql = "UPDATE tbl_transacciones set estatus = 'devuelto', fecha_devolucion = ? "
-						+ "where miembro_id = (select id from tbl_miembros where user_id = ?) "
-						+ "and libro_id = (select id from tbl_libros where isbn = ?)"
-						+ "and estatus = 'no devuelto';";
+				+ "where miembro_id = (select id from tbl_miembros where user_id = ?) "
+				+ "and libro_id = (select id from tbl_libros where isbn = ?)" + "and estatus = 'no devuelto';";
 
 		try (Connection connection = DatabaseConnection.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -483,18 +481,43 @@ public class LibraryDAO {
 			statement.setString(1, fecha);
 			statement.setString(2, userId);
 			statement.setString(3, isbn);
-			
+
 			// statement.setString(4, isbn);
 
 			statement.execute();
 
-			restarLibro(isbn);
+			sumarLibro(isbn);
 			System.out.println("Libro devuelto.");
 
 		} catch (SQLException e) {
 			throw new SQLException(e.getMessage());
 		}
-		
+
+	}
+
+	public TransactionsResultSet historialPrestamosLibro(String isbn, boolean printResults) throws SQLException {
+
+		String sql = "SELECT l.titulo, l.isbn, m.nombre, m.user_id, \n"
+				+ "    t.estatus, DATE_FORMAT(t.fecha_prestamo, '%Y-%m-%d') as fecha_prestamo \n"
+				+ "    FROM tbl_transacciones t JOIN \n"
+				+ "    tbl_libros l ON t.libro_id = l.Id JOIN \n"
+				+ "    tbl_miembros m ON t.miembro_id = m.Id WHERE l.isbn = ?;";
+
+		try (Connection connection = DatabaseConnection.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement(sql)) {
+
+			statement.setString(1, isbn);
+
+			TransactionsResultSet trs = new TransactionsResultSet(statement.executeQuery());
+
+			if (printResults) {
+				trs.printResults();
+			}
+			return trs;
+
+		} catch (SQLException e) {
+			throw new SQLException(e.getMessage());
+		}
 	}
 
 }

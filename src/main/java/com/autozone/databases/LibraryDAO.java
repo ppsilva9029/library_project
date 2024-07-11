@@ -49,8 +49,6 @@ public class LibraryDAO {
 
 			System.out.println("Libro \"" + libro.getTitulo() + "\" añadido (" + quantity + ").");
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -75,8 +73,6 @@ public class LibraryDAO {
 			}
 			return brs;
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -135,8 +131,6 @@ public class LibraryDAO {
 			statement.execute();
 			System.out.println("Datos del libro actualizados.");
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -163,8 +157,6 @@ public class LibraryDAO {
 			statement.execute();
 			System.out.println("Datos del libro actualizados.");
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -180,8 +172,6 @@ public class LibraryDAO {
 			statement.execute();
 			System.out.println("Cantidad disponible disminuida.");
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -197,8 +187,6 @@ public class LibraryDAO {
 			statement.execute();
 			System.out.println("Cantidad disponible aumentada.");
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -211,8 +199,6 @@ public class LibraryDAO {
 				PreparedStatement statement = connection.prepareStatement(sql)) {
 
 			statement.setString(1, isbn);
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 
 	}
@@ -229,8 +215,6 @@ public class LibraryDAO {
 
 			return rs.getInt(1) > 0;
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -246,8 +230,6 @@ public class LibraryDAO {
 
 			return rs.getInt(1) > 0;
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -269,8 +251,6 @@ public class LibraryDAO {
 
 			System.out.println("Usuario añadido.");
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -292,8 +272,6 @@ public class LibraryDAO {
 
 			System.out.println("Ususario eliminado.");
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -316,8 +294,6 @@ public class LibraryDAO {
 			statement.execute();
 
 			System.out.println("Datos del miembro actualizados.");
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -342,8 +318,6 @@ public class LibraryDAO {
 			}
 			return mrs;
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -377,8 +351,6 @@ public class LibraryDAO {
 			int i = rs.getInt(1);
 			return i < 1;
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 
@@ -399,8 +371,6 @@ public class LibraryDAO {
 			int i = rs.getInt(1);
 			return i > 0;
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 
 	}
@@ -434,8 +404,6 @@ public class LibraryDAO {
 			restarLibro(isbn);
 			System.out.println("Prestamo finalizado.");
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 
 	}
@@ -458,9 +426,7 @@ public class LibraryDAO {
 			int i = rs.getInt(1);
 			return i > 0;
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
-		}
+		} 
 
 	}
 
@@ -489,8 +455,6 @@ public class LibraryDAO {
 			sumarLibro(isbn);
 			System.out.println("Libro devuelto.");
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 
 	}
@@ -515,8 +479,6 @@ public class LibraryDAO {
 			}
 			return trs;
 
-		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
 		}
 	}
 	

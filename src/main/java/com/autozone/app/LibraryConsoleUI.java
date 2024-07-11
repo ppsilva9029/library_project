@@ -12,65 +12,29 @@ public class LibraryConsoleUI {
     private static LibraryDAO libraryDAO = new LibraryDAO();
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void loop() {
         while (true) {
             System.out.println("Library Management System");
-            System.out.println("1. Add Book");
-            System.out.println("2. Delete Book");
-            System.out.println("3. Update Book Info");
-            System.out.println("4. Search Book");
-            System.out.println("5. Register New Member");
-            System.out.println("6. Delete Member");
-            System.out.println("7. Update Member Info");
-            System.out.println("8. Search Member");
-            System.out.println("9. Register Book Loan");
-            System.out.println("10. Register Book Return");
-            System.out.println("11. Show Loan History");
-            System.out.println("12. Check Book Availability");
-            System.out.println("13. Exit");
-            System.out.print("Choose an option: ");
-            int choice = scanner.nextInt();
+            System.out.println("1. Book Operations");
+            System.out.println("2. Member Operations");
+            System.out.println("3. Loan Operations");
+            System.out.println("4. Exit");
+            System.out.print("Choose a category: ");
+            int categoryChoice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
             try {
-                switch (choice) {
+                switch (categoryChoice) {
                     case 1:
-                        addBook();
+                        bookOperations();
                         break;
                     case 2:
-                        deleteBook();
+                        memberOperations();
                         break;
                     case 3:
-                        updateBookInfo();
+                        loanOperations();
                         break;
                     case 4:
-                        searchBook();
-                        break;
-                    case 5:
-                        registerNewMember();
-                        break;
-                    case 6:
-                        deleteMember();
-                        break;
-                    case 7:
-                        updateMemberInfo();
-                        break;
-                    case 8:
-                        searchMember();
-                        break;
-                    case 9:
-                        registerBookLoan();
-                        break;
-                    case 10:
-                        registerBookReturn();
-                        break;
-                    case 11:
-                        showLoanHistory();
-                        break;
-                    case 12:
-                        checkBookAvailability();
-                        break;
-                    case 13:
                         System.out.println("Exiting...");
                         return;
                     default:
@@ -82,6 +46,91 @@ public class LibraryConsoleUI {
         }
     }
 
+    private static void bookOperations() throws SQLException {
+        System.out.println("Book Operations");
+        System.out.println("1. Add Book");
+        System.out.println("2. Delete Book");
+        System.out.println("3. Update Book Info");
+        System.out.println("4. Search Book");
+        System.out.println("5. Check Book Availability");
+        System.out.print("Choose an option: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        switch (choice) {
+            case 1:
+                addBook();
+                break;
+            case 2:
+                deleteBook();
+                break;
+            case 3:
+                updateBookInfo();
+                break;
+            case 4:
+                searchBook();
+                break;
+            case 5:
+                checkBookAvailability();
+                break;
+            default:
+                System.out.println("Invalid option. Please try again.");
+        }
+    }
+
+    private static void memberOperations() throws SQLException {
+        System.out.println("Member Operations");
+        System.out.println("1. Register New Member");
+        System.out.println("2. Delete Member");
+        System.out.println("3. Update Member Info");
+        System.out.println("4. Search Member");
+        System.out.print("Choose an option: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        switch (choice) {
+            case 1:
+                registerNewMember();
+                break;
+            case 2:
+                deleteMember();
+                break;
+            case 3:
+                updateMemberInfo();
+                break;
+            case 4:
+                searchMember();
+                break;
+            default:
+                System.out.println("Invalid option. Please try again.");
+        }
+    }
+
+    private static void loanOperations() throws SQLException {
+        System.out.println("Loan Operations");
+        System.out.println("1. Register Book Loan");
+        System.out.println("2. Register Book Return");
+        System.out.println("3. Show Loan History");
+        System.out.print("Choose an option: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        switch (choice) {
+            case 1:
+                registerBookLoan();
+                break;
+            case 2:
+                registerBookReturn();
+                break;
+            case 3:
+                showLoanHistory();
+                break;
+            default:
+                System.out.println("Invalid option. Please try again.");
+        }
+    }
+
+    // Book Operations
     private static void addBook() throws SQLException {
         System.out.print("Enter book title: ");
         String title = scanner.nextLine();
@@ -142,6 +191,15 @@ public class LibraryConsoleUI {
         }
     }
 
+    private static void checkBookAvailability() throws SQLException {
+        System.out.print("Enter book ISBN: ");
+        String isbn = scanner.nextLine();
+
+        boolean isAvailable = libraryDAO.libroEstaDisponible(isbn);
+        System.out.println("Book availability: " + (isAvailable ? "Available" : "Not Available"));
+    }
+
+    // Member Operations
     private static void registerNewMember() throws SQLException {
         System.out.print("Enter member name: ");
         String name = scanner.nextLine();
@@ -189,6 +247,7 @@ public class LibraryConsoleUI {
         }
     }
 
+    // Loan Operations
     private static void registerBookLoan() throws SQLException {
         System.out.print("Enter book ISBN: ");
         String isbn = scanner.nextLine();
@@ -217,13 +276,5 @@ public class LibraryConsoleUI {
         boolean printResults = true;
 
         libraryDAO.historialPrestamosLibro(isbn, printResults);
-    }
-
-    private static void checkBookAvailability() throws SQLException {
-        System.out.print("Enter book ISBN: ");
-        String isbn = scanner.nextLine();
-
-        boolean isAvailable = libraryDAO.libroEstaDisponible(isbn);
-        System.out.println("Book availability: " + (isAvailable ? "Available" : "Not Available"));
     }
 }

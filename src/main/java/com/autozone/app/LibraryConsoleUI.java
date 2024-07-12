@@ -24,7 +24,8 @@ public class LibraryConsoleUI {
             int categoryChoice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
-            System.out.print("----------------------------------------------------------------------------");
+            String bigLine = "----------------------------------------------------------------------------\n";
+            System.out.println(bigLine);
             try {
                 switch (categoryChoice) {
                     case 1:
@@ -45,6 +46,8 @@ public class LibraryConsoleUI {
             } catch (SQLException e) {
                 System.out.println("Ocurrió un error: " + e.getMessage());
             }
+            
+            System.out.println(bigLine);
         }
     }
 
@@ -235,7 +238,7 @@ public class LibraryConsoleUI {
         System.out.println("Buscar por:\n 1. Nombre\n 2. UserID");
         int searchChoice = scanner.nextInt();
         scanner.nextLine(); // Consume newline
-        System.out.print("Enter search term: ");
+        System.out.print("Término de búsqueda: ");
         String searchTerm = scanner.nextLine();
         boolean printResults = true;
 
@@ -247,7 +250,7 @@ public class LibraryConsoleUI {
                 libraryDAO.buscarMiembroUserId(searchTerm, printResults);
                 break;
             default:
-                System.out.println("Invalid search criteria.");
+                System.out.println("Opción de búsqueda inválida.");
         }
     }
 

@@ -200,6 +200,10 @@ public class LibraryDAO {
 				PreparedStatement statement = connection.prepareStatement(sql)) {
 
 			statement.setString(1, isbn);
+			
+			statement.execute();
+			
+			System.out.println("Libro eliminado.");
 		}
 
 	}

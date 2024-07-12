@@ -11,6 +11,10 @@ public class BooksResultSet {
 	//private ResultSet results;
 	private ArrayList<Libro> data;
 
+	public ArrayList<Libro> getData() {
+		return data;
+	}
+
 	public BooksResultSet(ResultSet results) throws SQLException {
 		
 		this.data = new ArrayList<Libro>();

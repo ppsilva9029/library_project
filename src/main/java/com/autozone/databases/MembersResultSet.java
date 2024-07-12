@@ -10,6 +10,7 @@ public class MembersResultSet {
 
 	private ArrayList<Miembro> data;
 
+
 	public MembersResultSet(ResultSet results) throws SQLException {
 		
 		this.data = new ArrayList<Miembro>();
@@ -29,5 +30,9 @@ public class MembersResultSet {
 		}
 		
 		System.out.println("\n" + data.size() + " resultado(s) obtenidos.");
+	}
+	
+	public ArrayList<Miembro> getData() {
+		return data;
 	}
 }

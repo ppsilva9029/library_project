@@ -2,6 +2,10 @@
 
 ## **Library Management System**
 
+### Es necesario ejecutar el query que viene en setup_query desde el Workbench de MySQL.
+
+Este archivo define las tablas necesarias y al usuario y contraseña que se conecta con la base de datos.
+
 ### Gestión de libros
 - Añadir nuevos libros.
 - Eliminar libros existentes.
@@ -34,7 +38,3 @@ La base de datos está organizada en 3 tablas principales
   - tbl_transacciones (Préstamos)
 
 Cada tabla gestiona las operaciones referentes a Libros, Miembros y Préstamos, respectivamente.
-
-## Solo es necesario ejecutar el query que viene en setup_query desde el Workbench de MySQL.
-
-Este archivo define las tablas necesarias y al usuario y contraseña que se conecta con la base de datos.

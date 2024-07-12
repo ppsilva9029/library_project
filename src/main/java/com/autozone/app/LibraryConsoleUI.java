@@ -43,8 +43,12 @@ public class LibraryConsoleUI {
                     default:
                         System.out.println("Opción inválida, debe ingresar un número entero.");
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | IllegalArgumentException e) {
                 System.out.println("Ocurrió un error: " + e.getMessage());
+            } catch (Exception e) {
+            	System.out.println("Ocurrió un error: " + e.getMessage());
+            	System.out.println("Saliendo...");
+            	return;
             }
             
             System.out.println(bigLine);

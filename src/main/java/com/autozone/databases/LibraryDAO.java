@@ -70,6 +70,7 @@ public class LibraryDAO {
 
 			if (printResults) {
 				brs.printResults();
+				System.out.println();
 			}
 			return brs;
 
@@ -315,6 +316,7 @@ public class LibraryDAO {
 
 			if (printResults) {
 				mrs.printResults();
+				System.out.println();
 			}
 			return mrs;
 
@@ -476,6 +478,7 @@ public class LibraryDAO {
 
 			if (printResults) {
 				trs.printResults();
+				System.out.println();
 			}
 			return trs;
 

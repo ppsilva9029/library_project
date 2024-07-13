@@ -383,13 +383,13 @@ public class LibraryDAO {
 
 	public void registrarPrestamo(String isbn, String userId, String fecha) throws SQLException {
 
-		if (!puedePedirLibro(userId)) {
-			System.out.println("Este miembro no ha devuelto el último libro que pidió.");
-			return;
-		}
-
 		if (!libroEstaDisponible(isbn)) {
 			System.out.println("Este libro no está disponible.");
+			return;
+		}
+		
+		if (!puedePedirLibro(userId)) {
+			System.out.println("El libro está disponible, pero este miembro no ha devuelto el último libro que pidió.");
 			return;
 		}
 

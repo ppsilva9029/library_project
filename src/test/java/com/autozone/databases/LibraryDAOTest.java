@@ -92,9 +92,9 @@ public class LibraryDAOTest {
 
     @AfterClass
     public static void tearDownAfterClass() throws SQLException {
-        String isbn = "1234567890";
-        libraryDAO.eliminarLibro(isbn);
-        
+
+        libraryDAO.eliminarLibro("1234567890");
+        libraryDAO.eliminarLibro("0987654321");
         libraryDAO.eliminarMiembro("user123");
     }
 }

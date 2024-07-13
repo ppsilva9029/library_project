@@ -119,7 +119,7 @@ public class LibraryConsoleUI {
         System.out.println("Préstamos de libros.");
         System.out.println(" 1. Registrar préstamo");
         System.out.println(" 2. Registrar devolución");
-        System.out.println(" 3. Historial de préstamos de nu libro");
+        System.out.println(" 3. Historial de préstamos de un libro");
         System.out.print("Opción elegida: ");
         int choice = scanner.nextInt();
         scanner.nextLine(); // Consume newline
@@ -135,7 +135,7 @@ public class LibraryConsoleUI {
                 showLoanHistory();
                 break;
             default:
-                System.out.println("Invalid option. Please try again.");
+                System.out.println("Opción inválida, por favor intente de nuevo.");
         }
     }
 
@@ -282,7 +282,7 @@ public class LibraryConsoleUI {
     }
 
     private static void showLoanHistory() throws SQLException {
-    	System.out.print("Mostrar historial de préstamos.");
+    	System.out.println("Mostrar historial de préstamos.");
     	System.out.print("ISBN del libro: ");
         String isbn = scanner.nextLine();
         boolean printResults = true;
